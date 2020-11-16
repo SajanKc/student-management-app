@@ -46,5 +46,15 @@ public class StudentController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@PostMapping("students")
+	public ResponseEntity<Student> addStudent(@RequestBody Student student) {
+		try {
+			Student studentData = studentRepository.save(student);
+			return new ResponseEntity<>(studentData, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 }
